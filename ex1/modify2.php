@@ -129,8 +129,8 @@
 					<td> <B>Modify your information!!</B> </td> 
 				</tr>
 				<tr align='center' height='50'>
-               		<td> <input type="text" name="id" size="10" value="ID" readonly/></input><br> </td>
-            	</tr>
+					<td> <input type="text" name="id" size="10" value="ID" readonly/></input><br> </td>
+				</tr>
 				<tr align='center' height='50'>
 					<td> <input type="text" name="name" size="10" maxlength="12" placeholder="Name.."></input><br> </td>
 				</tr>
