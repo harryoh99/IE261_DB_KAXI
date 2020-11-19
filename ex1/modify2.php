@@ -11,7 +11,7 @@
 
 	$sql = "select * from personTBL where (userid='".$id."' and pw = '".$u_pw."');";
 	$ret = mysqli_query($conn,$sql);
-	$continue = 0
+	$continue = 0;
 	if($ret){
 		$count = mysqli_num_rows($ret);
 		if($count==0){

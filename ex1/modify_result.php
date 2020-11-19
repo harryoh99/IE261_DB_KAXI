@@ -14,5 +14,16 @@
     $sql = "update personTBL set name = '".$name."', sex = '".$sex."', phoneNum = '".$phoneNum."' where userid = '".$id."';";
     $sql2 = "update userTBL set email = '".$email."' where userid = '".$id."';";
 
+    $res = mysqli_query($conn,$sql);
+    $res2 = mysqli_query($conn,$sql2);
+
+    if($res&&$res2){
+        echo '<script type="text/javascript">alert("Successfully Modified"); history.go(-2)</script>';
+    }
+    else{
+        //echo "ERROR: " . $sql . "<br>" . $conn->error;
+        echo '<script type="text/javascript">alert("Modification Fail"); history.back(-1)</script>';	   
+   }
+
 
 ?>

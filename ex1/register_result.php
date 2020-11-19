@@ -28,8 +28,8 @@ if($result1&&$result2) {
  
 }
 else{
-	 echo "ERROR: " . $sql . "<br>" . $conn->error;
-	 //echo '<script type="text/javascript">alert("Registration Fail"); history.back(-1)</script>';	   
+	// echo "ERROR: " . $sql . "<br>" . $conn->error;
+	echo '<script type="text/javascript">alert("Registration Fail"); history.back(-1)</script>';	   
 }
 
 
