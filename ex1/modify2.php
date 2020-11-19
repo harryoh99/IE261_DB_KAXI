@@ -131,6 +131,9 @@
 						기본으로 id위에서 받은거 넣으면 되니까 $id로 되어 있어.-->
 				</tr>
 				<tr align='center' height='50'>
+					<td> <input type="text" name="id" size="10" value="ID" readonly/></input><br> </td>
+				</tr>
+				<tr align='center' height='50'>
 					<td> <input type="text" name="name" size="10" maxlength="12" placeholder="Name.."></input><br> </td>
 				</tr>
 				<tr align='center' height='50'>
