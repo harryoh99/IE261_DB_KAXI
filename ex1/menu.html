@@ -1,0 +1,42 @@
+<html>
+	<head>
+	<title> menu </title>
+	<style>
+		button {
+			width:80px;
+			background-color: gray;
+			border: none;
+			border-radius:10px;
+			color:#fff;
+			padding: 12px 0;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 12px;
+			margin: 3.4px;
+			cursor: pointer;
+		}
+		p.groove {border-style: groove;}
+	</style>
+	</head>
+	<body>
+		<script>
+			function a(sample){
+				alert(sample);
+			}
+		</script>
+		<center>
+		<br>
+		<H2> Menu </H2>
+		<button type="button" onclick="parent.right.location.href='right_main.php'"><B>Home</B></button> </p>
+		<p class = "groove"> <H3> Search Group </H3>
+		<button type="button" onclick="parent.right.location.href='search.php'"><B>Search</B></button> </p>
+		<p class = "groove">  <H3> My page </H3>
+		<button type="button" onclick="parent.right.location.href='modify.php'"><B>Modify Info</B></button>
+		<br><br> <button type="button" onclick="parent.right.location.href='result.php'"><B>Result</B></button>
+		<br><br> <button type="button" onclick="parent.right.location.href='feedback.php'"><B>Feedback</B></button>
+		<p class = "groove">  <H3> Logout </H3>
+		<button type="button" onclick="parent.location.href='loginpage1.html';Javascript:a('Logout!!')"><B>Logout</B></button>
+	</body>
+</html>
+
