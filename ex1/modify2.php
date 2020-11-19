@@ -127,9 +127,10 @@
 			<table align='center'  width='500'>
 				<tr align='center' height='50'>
 					<td> <B>Modify your information!!</B> </td> 
-					<!-- 정민아 여기다가 id 받는거 하나만 넣어줘(대신 우리가 이건 못 바꾸게 하면 될듯?그래야 뒤의 sql에서 id를 받아올 수 있어
-						기본으로 id위에서 받은거 넣으면 되니까 $id로 되어 있어.-->
 				</tr>
+				<tr align='center' height='50'>
+               		<td> <input type="text" name="id" size="10" value="ID" readonly/></input><br> </td>
+            	</tr>
 				<tr align='center' height='50'>
 					<td> <input type="text" name="name" size="10" maxlength="12" placeholder="Name.."></input><br> </td>
 				</tr>
