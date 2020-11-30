@@ -46,5 +46,6 @@
 			<tr>
 		</table>
 		</form>
+		<br> <button type="button" onclick="parent.right.location.href='Feedback_list.php'"><B>Feedback list</B></button>
 	</body>
 </html>
