@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <html>
 	<head>
 	<title> result </title>
@@ -54,7 +57,7 @@
 					<td> <B> Enter your ID and Password! </B> </td>
 				</tr>
 				<tr align='center' height='50'>
-					<td> <input type="text" name="ID" size="10" placeholder="ID.."></input><br> </td>
+					<td> <input type="text" name="ID" size="10" value = <?php echo $_SESSION['ID']?> placeholder="ID.."></input><br> </td>
 				</tr>
 				<tr align='center' height='50'>
 					<td> <input type="text" name="Password" size="10" maxlength="8"placeholder="Password.."></input><br> </td>

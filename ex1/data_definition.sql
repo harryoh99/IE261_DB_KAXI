@@ -168,6 +168,10 @@ CALL insert_arrival('대전복합터미널',0);
 CALL insert_arrival('대전역',0);
 CALL insert_arrival('서대전역',0);
 
+
+
+
+
 DELIMITER $$
 create trigger auto_customer
 after insert on requestTBL
@@ -185,10 +189,12 @@ END $$
 DELIMITER ;
 
 
-
-select * from requestTBL;
-select reqNum,hour, minute,count from requestTBL where (year=2020 and month=12 and day=4 and deptNum=9 and arvNum=1);
+select * from matchCandtbl;
 
 
-	
+insert into matchTBL(matchCandNum,taxiID,price) values(2,'0',100);
+insert into matchCandTBL(reqNum, completed) values(16,0);
+update matchCandTBL
+set completed=1
+where matchCandNum=2;
     

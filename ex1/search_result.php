@@ -37,13 +37,14 @@
     echo "<H2> &nbsp; Find Your Taxi and Save Money </H2>";
     echo "<TABLE border = '2' align = 'center'>";
     echo "<TR height='20'>";
-	echo "<TH> Request Number </TH><TH> Departure </TH><TH> Destination </TH><TH> Hour </TH><TH> Minute </TH><TH> Current Count </TH><th>Join</th>";   
+	echo "<TH> Request Number </TH><TH> Departure </TH><TH> Destination </TH><TH> Time </TH><TH> Current Count </TH><th>Join</th>";   
 	echo "</TR>";
 	$servername = 'localhost';
 	$username = 'root';
 	$pw = '1234';
     $db = 'kaxi';
-    $id='';
+    $id='0';
+    
     $type = $_POST['type'];
     if($type =='ToKaist'){
         $dest = $_POST['INKAIST'];
@@ -60,16 +61,16 @@
 
     $conn = mysqli_connect($servername, $username, $pw, $db) or die("MYSQL CONNECT FAILED");
     if($dest=="Anywhere" && $depart =="Anywhere"){
-        $sql = "select reqNum,hour, minute,count,deptNum, arvNum from requestTBL where (year=".$year." and month=".$month." and day=".$date.");";
+        $sql = "select reqNum,hour, minute,count,deptNum, arvNum from requestTBL where (year=".$year." and month=".$month." and day=".$date." and completed = 0);";
     }
     else if($dest=="Anywhere"){
-        $sql = "select reqNum,hour, minute,count,deptNum, arvNum from requestTBL where (year=".$year." and month=".$month." and day=".$date." and deptNum=".$depart.");";
+        $sql = "select reqNum,hour, minute,count,deptNum, arvNum from requestTBL where (year=".$year." and month=".$month." and day=".$date." and deptNum=".$depart." and completed = 0);";
     }
     else if($depart=="Anywhere"){
-        $sql = "select reqNum,hour, minute,count,deptNum, arvNum from requestTBL where (year=".$year." and month=".$month." and day=".$date." and arvNum =".$dest.");";
+        $sql = "select reqNum,hour, minute,count,deptNum, arvNum from requestTBL where (year=".$year." and month=".$month." and day=".$date." and arvNum =".$dest." and completed = 0);";
     }
     else{
-        $sql = "select reqNum,hour, minute,count,deptNum, arvNum from requestTBL where (year=".$year." and month=".$month." and day=".$date." and deptNum=".$depart." and arvNum=".$dest.");";
+        $sql = "select reqNum,hour, minute,count,deptNum, arvNum from requestTBL where (year=".$year." and month=".$month." and day=".$date." and deptNum=".$depart." and arvNum=".$dest." and completed = 0);";
     }
     $ret = mysqli_query($conn,$sql) or die("sql: ".$sql."<br><br>".$conn->error);
     $count = mysqli_num_rows($ret);
@@ -89,10 +90,10 @@
         echo "<TD>", $row['hour'].'시 '.$row['minute'].'분', "</TD>";
         echo "<TD>", $row['count'], "</TD>";
         echo "<TD> 
-        <form method = 'post' action = 'Join.php'>
-        <input type='hidden' name = 'id' value = '",$id,"'>
-        <input type='hidden' name = 'id' value = '",$row['reqNum'],"'>
-        <input type='submit' value='Join'>
+        <form method = 'post' action = 'join.php'>
+            <input type='hidden' name = 'id' value = '".$id."'>
+            <input type='hidden' name = 'reqNum' value = '".$row['reqNum']."'>
+            <input type='submit' value='Join'>
         </form>
         </TD>";
         echo "</TR>";	  

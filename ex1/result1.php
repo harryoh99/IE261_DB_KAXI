@@ -54,10 +54,16 @@
     $conn = mysqli_connect($servername, $username, $pw, $db);
     $sql = "select requestTBL.reqNum, year, month,day, hour, minute, deptNum, arvNum, count, requestTBL.completed from requestTBL,customerTBL
             where(requestTBL.reqNum = customerTBL.reqNum and userid='".$id."');";
-    $sql2 = "select matchCandTBL.reqNum, year, month,day, hour, minute, deptNum, arvNum, count, requestTBL.completed, matchCandNum.completed, from requestTBL, matchCandTBL 
-            where(select reqNum from customerTBL where userid='".$id."'and matchCandTBL.reqNum = requestTBL.reqNum and requestTBL.completed=1);";
-    $sql3 = "select matchCandTBL.reqNum, year, month,day, hour, minute, deptNum, arvNum, count, requestTBL.completed, matchCandNum.completed, from requestTBL, matchCandTBL 
-                 where(select reqNum from customerTBL where userid='".$id."' and requestTBL.completed=1);";
+    $sql2 = "select matchCandTBL.reqNum, requestTBL.year, requestTBL.month, requestTBL.day, requestTBL.hour, requestTBL.minute, deptNum, arvNum, count, matchCandTBL.completed 
+             from requesttbl, matchcandtbl, customertbl 
+             where (matchCandTBL.reqNum = requestTBL.reqNum and requestTBL.reqNum = customerTBL.reqNum 
+             and requestTBL.completed = 1  and userid = '".$id."');";
+    
+    $sql3 = "select matchCandTBL.reqNum, requestTBL.year, requestTBL.month, requestTBL.day, requestTBL.hour, requestTBL.minute, deptNum, arvNum, count, driverTBL.taxiNUM, price
+    from requesttbl, matchcandtbl, customertbl, matchTBL, driverTBL
+    where ( matchTBL.matchCandNum = matchCandTBL.matchCandNum and requestTBL.reqNum = customerTBL.reqNum and driverTBL.userid=matchTBL.taxiID and 
+            matchCandTBL.completed = 1 and requestTBL.completed=1 and customerTBL.userid = '".$id."');";
+
     
     
     $ret = mysqli_query($conn,$sql) or die("sql: ".$sql."<br><br>".$conn->error);
@@ -81,9 +87,76 @@
         echo "<TD>", bool_to_str($row['completed']), "</TD>";
         echo "</TR>";	  
     }
+    echo"</table>";
 
 
-    echo "</TABLE>";
+    
+    $ret2 = mysqli_query($conn,$sql2) or die("sql: ".$sql2."<br><br>".$conn->error);
+    $count2 = mysqli_num_rows($ret2);
+    if($count2!=0){
+        #echo '<script type="text/javascript">alert("'.$count2.' records are searched..."); </script>';
+
+        echo"
+            <H3> &nbsp; Matching Candidates </H3>
+                    <TABLE border = '2' align = 'center'>
+                        <TR height='20'>
+                            <TH> Request Number </TH><TH>Date</TH><TH> Time </TH>
+                            <TH> Departure</TH><TH>Arrival</TH><TH>Current Count</TH><TH>Match Completed</TH>";   
+        echo "</TR>";
+        while($row = mysqli_fetch_array($ret2)) {
+            echo "<TR align='center'>";
+            echo "<TD>", $row['reqNum'], "</TD>";
+            echo "<TD>", $row['year'].'-'.$row['month'].'-'.$row['day'], "</TD>";
+            echo "<TD>", $row['hour'].'시 '.$row['minute'].'분', "</TD>";
+            echo "<TD>", loc_to_str($row['deptNum']), "</TD>";
+            echo "<TD>", loc_to_str($row['arvNum']), "</TD>";
+            echo "<TD>", $row['count'], "</TD>";
+            echo "<TD>", bool_to_str($row['completed']),"</TD>";
+            echo "</TR>";	  
+        }
+        echo"</table>";
+    }
+    
+    else{
+        echo "TRLLL";
+    }
+
+
+    $ret3 = mysqli_query($conn,$sql3) or die("sql: ".$sql3."<br><br>".$conn->error);
+    $count3 = mysqli_num_rows($ret3);
+    if($count3!=0){
+        #echo '<script type="text/javascript">alert("'.$count2.' records are searched..."); </script>';
+
+        echo"
+            <H3> &nbsp; Match Completed </H3>
+                    <TABLE border = '2' align = 'center'>
+                        <TR height='20'>
+                            <TH> Request Number </TH><TH>Date</TH><TH> Time </TH>
+                            <TH> Departure</TH><TH>Arrival</TH><TH>Current Count</TH><TH>Taxi Number</TH><TH>Estimated Price</TH>";   
+        echo "</TR>";
+        while($row = mysqli_fetch_array($ret3)) {
+            echo "<TR align='center'>";
+            echo "<TD>", $row['reqNum'], "</TD>";
+            echo "<TD>", $row['year'].'-'.$row['month'].'-'.$row['day'], "</TD>";
+            echo "<TD>", $row['hour'].'시 '.$row['minute'].'분', "</TD>";
+            echo "<TD>", loc_to_str($row['deptNum']), "</TD>";
+            echo "<TD>", loc_to_str($row['arvNum']), "</TD>";
+            echo "<TD>", $row['count'], "</TD>";
+            echo "<TD>", $row['taxiNUM'],"</TD>";
+            echo "<TD>", $row['price'],"</TD>";
+            echo "</TR>";	  
+        }
+        echo"</table>";
+    }
+    
+    else{
+        echo "TRLLL";
+    }
+
+
+
+
+   
 	
 	echo "<br>&nbsp;<button type=".'"button" onclick='.'"location.href='."'result.php'".' "'.">back</button></br>";
 	echo "</html>";

@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	$servername = 'localhost';
 	$username = 'root';
 	$pw = '1234';
@@ -7,6 +8,7 @@
 
 	$id = $_POST['ID'];
 	$u_pw = $_POST['Password'];
+	$_SESSION['ID'] = $id;
 
 	$sql = "select userTBL.userid, pw from userTBL, personTBL where userTBL.userid='".$id."' and (personTBL.userid='".$id."' and pw ='".$u_pw."');";
 	$ret = mysqli_query($conn, $sql);
