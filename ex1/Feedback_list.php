@@ -70,7 +70,7 @@ $result = mysqli_query($con, $sql);
    mysqli_close($con);
    
 	echo "</table>";
-	
+	echo '<br> <button type="button"'. 'onclick="parent.right.location.href='."'feedback.php'".'"><B>Write Feedback</B></button>';
 	
 
 
