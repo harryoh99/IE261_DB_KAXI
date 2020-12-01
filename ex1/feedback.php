@@ -20,6 +20,20 @@
 			display: block;
 			margin-bottom: 10px;
 		}
+		button {
+			width:120px;
+			background-color: Black;
+			border: none;
+			border-radius:10px;
+			color:#fff;
+			padding: 15px 0;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 15px;
+			margin: 4px;
+			cursor: pointer;
+		}
 	</style>
 	</head>
 	<body>
