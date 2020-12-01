@@ -54,43 +54,14 @@
 	</head>
 	<body>
 	<br><br><br>
-	<form method = "post" action = 'Search_result.php'>
+	<form method = "post" action = 'Search_de.php'>
 		<table align='center' width = '600'>
 			<tr bgcolor = '#E6E6E6'>
 				<td Colspan = "2"> <H2> <B>  <p style = 'text-align:center;'> Search groups </p> </B> </H2> </td>
 			</tr>
 			<tr align='center' height='80'>
 				<td width='80'> <B> Type </B> </td>
-				<td><B>To kaist</B> <Input type='radio' value='ToKaist' Name='type'> </input> &nbsp <B>From kaist</B> <Input type='radio' value='FromKaist' Name='type'> </input>
-					<select name = 'place'> <option value='Anywhere'>Anywhere</option> <option value='1'>기계동</option><option value='2'>희망관</option><option value='3'>오리연못</option><option value='4'>N1</option> </select>
-					<br> 
-				</td>
-			</tr>
-			<tr align='center' height='100'>
-				<td width='80'> <B> Departure<br>/Destination </B> </td>
-				<td>
-				<input type="text" name="Destination" size="10" placeholder="Departure / Destination.."></input>
-				</td>
-			</tr>
-			<tr align='center' height='80'>
-				<td colspan = '2'> 
-					<table>
-							<script>
-								var a = new Date();
-								document.write("<tr align = 'center'>");
-								for(var i =0; i<7; i++) {
-									document.write("<td>"+"<B>"+(a.getMonth()+1)+"/"+(a.getDate()) +"</B>" + "<br>"+"<Input type='radio' value='"+a.getDate()+"' Name='Date'>"+"</td>");
-									a.setDate(a.getDate()+1);
-								}
-								document.write("</tr>");
-								document.write("<tr align = 'center'>");
-								for(var i =0; i<7; i++) {
-									document.write("<td>"+"<B>"+(a.getMonth()+1)+"/"+(a.getDate()) +"</B>" + "<br>"+"<Input type='radio' value='"+a.getDate()+"' Name='Date'>"+"</td>");
-									a.setDate(a.getDate()+1);
-								}
-								document.write("</tr>");
-							</script>
-					</table>
+				<td><B>To kaist</B> <Input type='radio' value='ToKaist' Name='type' required> </input> &nbsp <B>From kaist</B> <Input type='radio' value='FromKaist' Name='type'> </input>
 				</td>
 			</tr>	
 		</table>

@@ -35,7 +35,7 @@
 	$ret2 = mysqli_query($conn,$sql2);
 	if($ret2){
 		$count = mysqli_num_rows($ret2);
-		if($count!>0){
+		if($count>0){
 			$row = mysqli_fetch_array($ret2);
 			$email = $row['email'];
 		}
@@ -45,7 +45,7 @@
 			$ret3 = mysqli_query($conn,$sql3);
 			if($ret3){
 				$count = mysqli_num_rows($ret3);
-				if($count!>0){
+				if($count>0){
 					$row = mysqli_fetch_array($ret3);
 					$taxiNum = $row['taxiNUM'];
 					$taxiCompanyName = $row['taxiCompanyName'];
@@ -129,19 +129,36 @@
 					<td> <B>Modify your information!!</B> </td> 
 				</tr>
 				<tr align='center' height='50'>
-					<td> <input type="text" name="id" size="10" value="ID" readonly/></input><br> </td>
+					<td> <input type="text" name="id" size="10" value=<?php echo $id?> readonly/></input><br> </td>
+				</tr>
+				<tr align = 'center' height = '50'>
+					<td> <input type="text" name="pw" size="10" value=<?php echo $u_pw?> /></input><br> </td>
 				</tr>
 				<tr align='center' height='50'>
-					<td> <input type="text" name="name" size="10" maxlength="12" placeholder="Name.."></input><br> </td>
+					<td> <input type="text" name="name" size="10" maxlength="12" value = <?php echo $name?> placeholder="Name.."></input><br> </td>
+				</tr>
+				<?php
+				if ($sex=='Male'){ 
+						echo"
+						<tr align='center' height='50'>
+							<td align='center'> <B> Choose Your Gender: </B> <input type= 'radio', name='gender' value='M' checked = 'checked'> Male <input type= 'radio', name='gender' value='F'> Female </td>
+						</tr>
+						";
+				}
+				else{
+					echo "
+					<tr align='center' height='50'>
+						<td align='center'> <B> Choose Your Gender: </B> <input type= 'radio', name='gender' value='M'> Male <input type= 'radio', name='gender' value='F' checked = 'checked'> Female </td>
+					</tr>
+					";
+				}
+				
+				?>
+				<tr align='center' height='50'>
+					<td> <input type="text" name="phonenumber" size="10" maxlength="11" value = <?php echo $phoneNum ?> placeholder="phonenumber.."></input><br> </td>
 				</tr>
 				<tr align='center' height='50'>
-					<td align='center'> <B> Choose Your Gender: </B> <input type= 'radio', name='gender' value='M'> Male <input type= 'radio', name='gender' value='F'> Female </td>
-				</tr>
-				<tr align='center' height='50'>
-					<td> <input type="text" name="phonenumber" size="10" maxlength="11" placeholder="phonenumber.."></input><br> </td>
-				</tr>
-				<tr align='center' height='50'>
-					<td> <input type="text" name="e-mail" size="10" placeholder="email.."></input><br> </td>
+					<td> <input type="text" name="e-mail" size="10" value = <?php echo $email?> placeholder="email.."></input><br> </td>
 				</tr>
 				<tr align='center' height='40'>
 					<td> <input type="submit" value="modify"></input> </td>
