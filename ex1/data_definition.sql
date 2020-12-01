@@ -184,8 +184,10 @@ begin
 END $$
 DELIMITER ;
 
+
+
 select * from requestTBL;
-select reqNum,hour, minute,count from requestTBL where (year=2020 and month=12 and date=4);
+select reqNum,hour, minute,count from requestTBL where (year=2020 and month=12 and day=4 and deptNum=9 and arvNum=1);
 
 
 	

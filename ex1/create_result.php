@@ -27,7 +27,7 @@
     $sql2 = "update customerTBL set userid = '".$id."', ishost = 1 where reqNum=(select LAST_INSERT_ID());";
     $ret2 = mysqli_query($conn,$sql2) or die("ERROR: " . $sql . "<br>" . $conn->error);
     if($ret&&$ret2){
-        echo '<script type="text/javascript">alert("Successfully Registered");history.back(-1)</script>';
+        echo '<script type="text/javascript">alert("Successfully Registered");location.replace("right_main.php");</script>';
     }
     else{
         '<script type="text/javascript">alert("Create Fail"); history.back(-1)</script>';

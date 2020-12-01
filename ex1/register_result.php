@@ -24,7 +24,7 @@ $result1 = mysqli_query($conn, $sql1);
 $result2 = mysqli_query($conn, $sql2);
 if($result1&&$result2) {
 	
-	echo '<script type="text/javascript">alert("Successfully Registered"); history.back(-1)</script>';
+	echo '<script type="text/javascript">alert("Successfully Registered"); location.replace("Loginpage1.html");</script>';
  
 }
 else{
