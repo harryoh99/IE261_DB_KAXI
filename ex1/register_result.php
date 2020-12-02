@@ -20,16 +20,16 @@ $sql1 = $sql1."('".$userid."', '".$username."', '".$userpw."', '".$usersex."', "
 
 $sql2 = "insert into userTBL(userid, email) values ( '".$userid."', '".$usermail."');";
 
-$result1 = mysqli_query($conn, $sql1) or die("ERROR: " . $sql . "<br>" . $conn->error);
-$result2 = mysqli_query($conn, $sql2);
+$result1 = mysqli_query($conn, $sql1) or die('<script type="text/javascript">alert("Registration Fail"); history.back(-1)</script>');
+$result2 = mysqli_query($conn, $sql2) or die('<script type="text/javascript">alert("Registration Fail"); history.back(-1)</script>');
 if($result1&&$result2) {
 	
 	echo '<script type="text/javascript">alert("Successfully Registered"); location.replace("Loginpage1.html");</script>';
  
 }
 else{
-	echo "ERROR: " . $sql . "<br>" . $conn->error;
-	//echo '<script type="text/javascript">alert("Registration Fail"); history.back(-1)</script>';	   
+	//echo "ERROR: " . $sql . "<br>" . $conn->error;
+	echo '<script type="text/javascript">alert("Registration Fail"); history.back(-1)</script>';	   
 }
 
 

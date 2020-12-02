@@ -57,14 +57,43 @@
 
 
     echo "<HEAD>
+            <style>
+            table {
+                border-top: 1px solid #ccc;
+                border-left: 3px solid #369;
+                border-right: 3px solid #369;
+            }
+            th, td {
+                border-bottom: 1px solid #444444;
+                border-right: 1px solid;
+                padding: 5px;
+            }
+            button {
+            width:80px;
+            background-color: #E6E6E6;
+            border: none;
+            border-radius:8px;
+            color: black;
+            padding: 12px 0;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 3.5px;
+            cursor: pointer;
+            }
+            </style>
+            <TITLE>
+                result
+            </TITLE>
             <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
             <TITLE> Taxi Search Result </TITLE>
             </HEAD>
             <H3> &nbsp; Pending Requests </H3>
-            <TABLE border = '2' align = 'center'>
+            <TABLE align = 'center'>
                 <TR height='20'>
                     <TH> Request Number </TH><TH>Date</TH><TH> Time </TH>
-                    <TH> Departure</TH><TH>Arrival</TH><TH>Current Count </TH><th>Expected Price</th><TH>Completed</TH>";   
+                    <TH> Departure</TH><TH>Arrival</TH><TH>Current Count </TH><th>Expected Price</th><TH>Completed</TH><th>Finish</th>";   
     echo "</TR>";
 
 
@@ -129,7 +158,7 @@
 
         echo"
             <H3> &nbsp; Matching Candidates </H3>
-                    <TABLE border = '2' align = 'center'>
+                    <TABLE align = 'center'>
                         <TR height='20'>
                             <TH> Request Number </TH><TH>Date</TH><TH> Time </TH>
                             <TH> Departure</TH><TH>Arrival</TH><TH>Current Count</TH><th>Expected Price</th><TH>Match Completed</TH>";   
@@ -157,7 +186,7 @@
 
         echo"
             <H3> &nbsp; Match Completed </H3>
-                    <TABLE border = '2' align = 'center'>
+                    <TABLE align = 'center'>
                         <TR height='20'>
                             <TH> Request Number </TH><TH>Date</TH><TH> Time </TH>
                             <TH> Departure</TH><TH>Arrival</TH><TH>Current Count</TH><TH>Taxi Number</TH><TH>Estimated Price</TH>";   

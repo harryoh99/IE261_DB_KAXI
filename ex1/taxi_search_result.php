@@ -103,7 +103,7 @@
     }
     else {
         #echo " sql: ".$sql."<br><br>";
-        echo '<script type="text/javascript">alert("no data!!"); location.replace("search.php"); </script>';
+        echo '<script type="text/javascript">alert("no data!!"); location.replace("taxi_search.php"); </script>';
              
     }
     while($row = mysqli_fetch_array($ret)) {

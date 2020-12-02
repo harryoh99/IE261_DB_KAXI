@@ -25,7 +25,7 @@
 					<head>
 					<title> Kaxi </title>
 					</head>
-					<FRAMESET ROWS = "120, *">
+					<FRAMESET ROWS = "125, *">
 						<FRAME SRC = "top.php" NAME = "top" noresize>
 						<FRAMESET COLS = "200, *">
 							<FRAME SRC = "menu.html" NAME = "left" noresize>

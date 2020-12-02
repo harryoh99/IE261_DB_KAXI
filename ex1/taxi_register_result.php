@@ -20,8 +20,8 @@ $sql = $sql."('".$driverid."', '".$drivername."', '".$driverpw."', '".$driverSex
 
 $sql2 = "insert into driverTBL(userid, taxiCompanyNum, taxiNUM) values ('".$driverid."', ".$driverCompany.",'".$driverTaxi."');";
 
-$result1 = mysqli_query($conn, $sql) or die("ERROR: " . $sql . "<br>" . $conn->error);
-$result2 = mysqli_query($conn, $sql2) or die("WRONG SECOND");
+$result1 = mysqli_query($conn, $sql) or die('<script type="text/javascript">alert("Registration Fail"); history.back(-1)</script>');
+$result2 = mysqli_query($conn, $sql2) or die('<script type="text/javascript">alert("Registration Fail"); history.back(-1)</script>');
 if($result1&&$result2) {
 	
 	echo '<script type="text/javascript">alert("Successfully Registered"); location.replace("Loginpage2.html");</script>';

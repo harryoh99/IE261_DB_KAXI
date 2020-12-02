@@ -189,12 +189,9 @@ END $$
 DELIMITER ;
 
 
-select * from matchCandtbl;
 
 
 insert into matchTBL(matchCandNum,taxiID,price) values(2,'0',100);
-insert into matchCandTBL(reqNum, completed) values(16,0);
-update matchCandTBL
-set completed=1
-where matchCandNum=2;
+
+
     

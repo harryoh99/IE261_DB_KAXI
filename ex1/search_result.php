@@ -54,12 +54,41 @@
         else   
             return "COMPLETED";
     }
-    echo "<HEAD>";
+    echo "<HEAD>
+            <style>
+            table {
+                border-top: 1px solid #ccc;
+                border-left: 3px solid #369;
+                border-right: 3px solid #369;
+            }
+            th, td {
+                border-bottom: 1px solid #444444;
+                border-right: 1px solid;
+                padding: 5px;
+            }
+            button {
+                width:80px;
+                background-color: #E6E6E6;
+                border: none;
+                border-radius:8px;
+                color: black;
+                padding: 12px 0;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 12px;
+                margin: 3.5px;
+                cursor: pointer;
+            }
+            </style>
+                <TITLE>
+                search_result
+                </TITLE>";
     echo "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />"; 
     echo "<TITLE> Taxi Search Result </TITLE>";
     echo "</HEAD>";
     echo "<H2> &nbsp; Find Your Taxi and Save Money </H2>";
-    echo "<TABLE border = '2' align = 'center'>";
+    echo "<TABLE align = 'center'>";
     echo "<TR height='20'>";
 	echo "<TH> Request Number </TH><TH> Departure </TH><TH> Destination </TH><TH> Time </TH><TH> Current Count </TH><TH>Expected Price</th><th>Join</th>";   
 	echo "</TR>";

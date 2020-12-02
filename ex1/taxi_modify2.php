@@ -1,58 +1,52 @@
 <?php
-   $servername = 'localhost';
-   $username = 'root';
-   $pw = '1234';
-   $db = 'kaxi';
+    $servername = 'localhost';
+    $username = 'root';
+    $pw = '1234';
+    $db = 'kaxi';
 
-   $conn = mysqli_connect($servername,$username,$pw,$db) or die("Mysql connection failed");
+    $conn = mysqli_connect($servername,$username,$pw,$db) or die("Mysql connection failed");
 
-   $id = $_POST['ID'];
-   $u_pw = $_POST['Password'];
+    $id = $_POST['ID'];
+    $d_pw = $_POST['Password'];
 
-   $sql = "select * from personTBL where (userid='".$id."' and pw = '".$u_pw."');";
-   $ret = mysqli_query($conn,$sql);
-   $continue = 0;
-   if($ret){
-      $count = mysqli_num_rows($ret);
-      if($count==0){
+    $sql = "select * from personTBL where (userid='".$id."' and pw = '".$d_pw."');";
+    $ret = mysqli_query($conn,$sql);
+    $continue = 0;
+    if($ret){
+        $count = mysqli_num_rows($ret);
+        if($count==0){
 
-         echo '<script type="text/javascript">alert("no data!!"); history.back(-1)</script>';
-      }
-      else{
-         $continue = 1;
-         $row = mysqli_fetch_array($ret);
-         $name = $row['username'];
-         $sex = $row['sex'];
-         $phoneNum = $row['phoneNum'];
-      }
-   }
-   else{
-      echo '<script type="text/javascript">alert("Search Fail"); history.back(-1)</script>';
-   }
+            echo '<script type="text/javascript">alert("no data!!"); history.back(-1)</script>';
+        }
+        else{
+            $continue = 1;
+            $row = mysqli_fetch_array($ret);
+            $name = $row['username'];
+            $sex = $row['sex'];
+            $phoneNum = $row['phoneNum'];
+        }
+    }
+    else{
+        echo '<script type="text/javascript">alert("Search Fail"); history.back(-1)</script>';
+    }
 
-   assert($continue==1);
-   $sql2 = "select * from userTBL where userid='".$id."';";
-   $ret2 = mysqli_query($conn,$sql2);
-   if($ret2){
-      $count = mysqli_num_rows($ret2);
-      if($count>0){
-         $row = mysqli_fetch_array($ret2);
-         $email = $row['email'];
-      }
-   }
-   else{
-      echo '<script type="text/javascript">alert("Search Fail"); history.back(-1)</script>';
-   }
-   
-
-
-
-   
+    assert($continue==1);
+    $sql2 = "select * from driverTBL where userid='".$id."';";
+    $ret2 = mysqli_query($conn,$sql2);
+    if($ret2){
+        $count = mysqli_num_rows($ret2);
+        if($count>0){
+            $row = mysqli_fetch_array($ret2);
+            $taxiNum = $row['taxiNUM'];
+        }
+    }
+    else{
+        echo '<script type="text/javascript">alert("Search Fail"); history.back(-1)</script>';
+    }
 
 
 
 ?>
-
 
 <html>
    <head>
@@ -115,7 +109,7 @@
    </style>
    </head>
    <body>
-      <form method = "post" action = 'modify_result.php'>
+      <form method = "post" action = 'taxi_modify_result.php'>
          <table align='center'  width='500'>
             <tr align='center' height='80'>
                <td colspan='2'> <B>Modify your information!!</B> </td> 
@@ -128,7 +122,7 @@
             </tr>
             <tr align = 'center' height = '50'>
                <td> <B>Password</B> </td>
-               <td> <input type="text" name="pw" size="10" value=<?php echo $u_pw?> /></input><br> </td>
+               <td> <input type="text" name="pw" size="10" value=<?php echo $d_pw?> /></input><br> </td>
             </tr>
             <tr align='center' height='50'>
                <td> <B>Name</B> </td>
@@ -156,14 +150,14 @@
                <td> <input type="text" name="phonenumber" size="10" maxlength="11" value = <?php echo $phoneNum ?> placeholder="phonenumber.."></input><br> </td>
             </tr>
             <tr align='center' height='50'>
-               <td> <B>e-mail</B> </td>
-               <td> <input type="text" name="e-mail" size="10" value = <?php echo $email?> placeholder="email.."></input><br> </td>
+               <td> <B>Taxi Number</B> </td>
+               <td> <input type="text" name="taxiNum" size="10" value = <?php echo $taxiNum?> placeholder="taxiNumber.."></input><br> </td>
             </tr>
             <tr align='center' height='40'>
                <td colspan='2'> <input type="submit" value="modify"></input> </td>
             </tr>
          </table>
       </form>
-      <button type="button" onclick="location.href='modify.php'"><B>Back</B></button>
+      <button type="button" onclick="location.href='taxi_modify.php'"><B>Back</B></button>
    </body>
 </html>
