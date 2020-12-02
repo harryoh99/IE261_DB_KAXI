@@ -1,14 +1,44 @@
 <?php
 
-echo "<HEAD><TITLE> Feedbacklist </TITLE></HEAD>";
+echo "<HEAD>
+	<style>
+	table {
+		 border-top: 1px solid #ccc;
+		 border-left: 3px solid #369;
+		 border-right: 3px solid #369;
+    }
+    th, td {
+		 border-bottom: 1px solid #444444;
+		 border-right: 1px solid;
+		 padding: 5px;
+    }
+	button {
+		width:120px;
+		background-color: Black;
+		border: none;
+		border-radius:10px;
+		color:#fff;
+		padding: 15px 0;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 15px;
+		margin: 4px;
+		cursor: pointer;
+	}
+	</style>
+		<TITLE>
+			Feedbacklist
+		</TITLE>
+	</HEAD>";
 	echo "<H2> &nbsp; Feedbacklist </H2>";	
-		
-	echo "<TABLE border=1 width = '1000' align='center'>";
+	
+	echo "<BR> <TABLE width = '1000' align='center'>";
 	echo "<TR allign='center'>";
-	echo "<TD>", "feedbackNumber","</TD>";
-	echo "<TD>", "userid","</TD>";
-	echo "<TD>", "rate","</TD>";
-	echo "<TD>", "feedback content","</TD>";
+	echo "<TD width = '30' align = 'center'>", "<B>#</B>","</TD>";
+	echo "<TD align = 'center'>", "<B>userid</B>","</TD>";
+	echo "<TD align = 'center'>", "<B>rate</B>","</TD>";
+	echo "<TD align = 'center'>", "<B>feedback content</B>","</TD>";
 	echo "</TR>";
 	
 $servername = "localhost:3306";
