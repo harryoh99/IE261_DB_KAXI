@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <html>
 	<head>
 	<title> create </title>
@@ -60,7 +63,7 @@
 					<td colspan ='2'> <B>Create</B> </td>
 				</tr>
 				<tr align='center' height='80'>
-					<td colspan ='2'> <input type="text" name="ID" size="10" maxlength="20" placeholder="ID.." required></input><br> </td>
+					<td colspan ='2'> <input type="text" name="ID" size="10" maxlength="20" value = <?php echo $_SESSION['ID']?> placeholder="ID.." readonly required></input><br> </td>
 				</tr>
 				<tr align='center' height='80'>
 				<td width='80'> <B> Type </B> </td>
