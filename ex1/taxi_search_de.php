@@ -57,10 +57,10 @@
 	</head>
 	<body>
 	<br><br><br>
-	<form method = "post" action = 'Search_result.php'>
+	<form method = "post" action = 'Taxi_search_result.php'>
     	<input type="hidden" name='type' value=<?php echo $type?>>
 		<table align='center' width = '600'>
-			<tr bgcolor = '#E6E6E6'>
+			<tr bgcolor = '#ffffbf'>
 				<td Colspan = "2"> <H2> <B>  <p style = 'text-align:center;'> Search groups </p> </B> </H2> </td>
 			</tr>
 			<tr align='center' height='80'>
@@ -98,7 +98,7 @@
 				</td>
 			</tr>
 		</table>
-		<br> <p style = 'text-align:center;'> <input type="submit" value="Search"></input><button type="button" onclick="location.href='search.php'">Back</button> </p>
+		<br> <p style = 'text-align:center;'> <input type="submit" value="Search"></input><button type="button" onclick="location.href='taxi_search.php'">Back</button> </p>
 	</form>
 	</body>
 </html>

@@ -84,7 +84,7 @@
 								var a = new Date();
 								document.write("<tr align = 'center'>");
 								for(var i =0; i<7; i++) {
-									document.write("<td>"+"<B>"+(a.getMonth()+1)+"/"+(a.getDate()) +"</B>" + "<br>"+"<Input type='radio' value='"+a.getDate()+"' Name='Date'>"+"</td>");
+									document.write("<td>"+"<B>"+(a.getMonth()+1)+"/"+(a.getDate()) +"</B>" + "<br>"+"<Input type='radio' value='"+a.getDate()+"' Name='Date' required>"+"</td>");
 									a.setDate(a.getDate()+1);
 								}
 								document.write("</tr>");
@@ -113,7 +113,7 @@
 						<B> minute </B> &nbsp
 						<select name = 'minute'>
 										<script>
-											for(var i =0; i<6; i++){
+											for(var i =0; i<6; i=i+3){
 												document.write("<option value='"+i+"0'>"+i+"0분</option>");
 											}
 										</script>

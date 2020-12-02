@@ -58,10 +58,10 @@
     echo "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />"; 
     echo "<TITLE> Taxi Search Result </TITLE>";
     echo "</HEAD>";
-    echo "<H2> &nbsp; Find Your Taxi and Save Money </H2>";
+    echo "<H2> &nbsp; Pending Matching Candidates </H2>";
     echo "<TABLE border = '2' align = 'center'>";
     echo "<TR height='20'>";
-	echo "<TH> Request Number </TH><TH> Departure </TH><TH> Destination </TH><TH> Time </TH><TH> Current Count </TH><TH>Expected Price</th><th>Join</th>";   
+	echo "<TH>#</TH><TH> Departure </TH><TH> Destination </TH><TH> Time </TH><TH> Expected Price </TH><th>Accept</th>";   
 	echo "</TR>";
 	$servername = 'localhost';
 	$username = 'root';
@@ -85,16 +85,16 @@
 
     $conn = mysqli_connect($servername, $username, $pw, $db) or die("MYSQL CONNECT FAILED");
     if($dest=="Anywhere" && $depart =="Anywhere"){
-        $sql = "select reqNum,hour, minute,count,deptNum, arvNum from requestTBL where (year=".$year." and month=".$month." and day=".$date." and completed = 0);";
+        $sql = "select matchCandNum, requestTBL.reqNum, hour, minute,count,deptNum, arvNum from matchCandTBL, requestTBL where (matchCandTBL.reqNum = requestTBL.reqNum and year=".$year." and month=".$month." and day=".$date." and matchCandTBL.completed = 0);";
     }
     else if($dest=="Anywhere"){
-        $sql = "select reqNum,hour, minute,count,deptNum, arvNum from requestTBL where (year=".$year." and month=".$month." and day=".$date." and deptNum=".$depart." and completed = 0);";
+        $sql = "select matchCandNum, requestTBL.reqNum, hour, minute,count,deptNum, arvNum from matchCandTBL, requestTBL where (matchCandTBL.reqNum = requestTBL.reqNum and year=".$year." and month=".$month." and day=".$date." and deptNum=".$depart." and matchCandTBL.completed = 0);";
     }
     else if($depart=="Anywhere"){
-        $sql = "select reqNum,hour, minute,count,deptNum, arvNum from requestTBL where (year=".$year." and month=".$month." and day=".$date." and arvNum =".$dest." and completed = 0);";
+        $sql = "select matchCandNum, requestTBL.reqNum, hour, minute,count,deptNum, arvNum from matchCandTBL, requestTBL where (matchCandTBL.reqNum = requestTBL.reqNum and year=".$year." and month=".$month." and day=".$date." and arvNum=".$dest." and matchCandTBL.completed = 0);";
     }
     else{
-        $sql = "select reqNum,hour, minute,count,deptNum, arvNum from requestTBL where (year=".$year." and month=".$month." and day=".$date." and deptNum=".$depart." and arvNum=".$dest." and completed = 0);";
+        $sql = "select matchCandNum, requestTBL.reqNum, hour, minute,count,deptNum, arvNum from matchCandTBL, requestTBL where (matchCandTBL.reqNum = requestTBL.reqNum and year=".$year." and month=".$month." and day=".$date." and deptNum=".$depart." and arvNum=".$dest." and matchCandTBL.completed = 0);";
     }
     $ret = mysqli_query($conn,$sql) or die("sql: ".$sql."<br><br>".$conn->error);
     $count = mysqli_num_rows($ret);
@@ -108,17 +108,18 @@
     }
     while($row = mysqli_fetch_array($ret)) {
         echo "<TR align='center'>";
-        echo "<TD>", $row['reqNum'], "</TD>";
+        echo "<TD>", $row['matchCandNum'], "</TD>";
         echo "<TD>", loc_to_str($row['deptNum']), "</TD>";
         echo "<TD>", loc_to_str($row['arvNum']), "</TD>";
         echo "<TD>", $row['hour'].'시 '.$row['minute'].'분', "</TD>";
-        echo "<TD>", $row['count'], "</TD>";
-        echo "<TD>", (compute_price($row['deptNum'],$row['arvNum'])/$row['count'] +500), "</TD>";
+        echo "<TD>", compute_price($row['deptNum'],$row['arvNum'] ), "</TD>";
         echo "<TD> 
-        <form method = 'post' action = 'join.php'>
+        <form method = 'post' action = 'match.php'>
             <input type='hidden' name = 'id' value = '".$id."'>
             <input type='hidden' name = 'reqNum' value = '".$row['reqNum']."'>
-            <input type='submit' value='Join'>
+            <input type='hidden' name = 'matchCandNum' value = '".$row['matchCandNum']."'>
+            <input type='hidden' name = 'price' value = '".compute_price($row['deptNum'],$row['arvNum'] )."'>
+            <input type='submit' value='Accept'>
         </form>
         </TD>";
         echo "</TR>";	  
@@ -129,14 +130,8 @@
 
 	echo "</TABLE>";
 	
-	echo "<br>&nbsp;<button type=".'"button" onclick='.'"location.href='."'search.php'".' "'.">back</button></br>";
+	echo "<br>&nbsp;<button type=".'"button" onclick='.'"location.href='."'taxi_search.php'".' "'.">back</button></br>";
 	echo "</html>";
-
-
-
 
 ?>
 
-<html>
-
-</html>

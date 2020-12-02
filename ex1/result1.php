@@ -1,6 +1,29 @@
 <?php
 
-
+    function compute_price(int $depart, int $arrival){
+        if($depart>=1 && $depart<=4){
+            switch ($arrival){
+                case 5:
+                    return 5500;
+                case 6:
+                    return 4000;
+                case 7:
+                    return 5000;
+                default:
+                    return 10000;
+            }
+        }
+        switch($depart){
+            case 5:
+                return 5500;
+            case 6:
+                return 4000;
+            case 7:
+                return 5000;
+            default:
+                return 10000;
+        }
+    }
     function loc_to_str(int $a) {
         switch ($a) {
             case 1:
@@ -41,7 +64,7 @@
             <TABLE border = '2' align = 'center'>
                 <TR height='20'>
                     <TH> Request Number </TH><TH>Date</TH><TH> Time </TH>
-                    <TH> Departure</TH><TH>Arrival</TH><TH>Current Count </TH><TH>Completed</TH>";   
+                    <TH> Departure</TH><TH>Arrival</TH><TH>Current Count </TH><th>Expected Price</th><TH>Completed</TH>";   
     echo "</TR>";
 
 
@@ -84,6 +107,7 @@
         echo "<TD>", loc_to_str($row['deptNum']), "</TD>";
         echo "<TD>", loc_to_str($row['arvNum']), "</TD>";
         echo "<TD>", $row['count'], "</TD>";
+        echo "<TD>", (compute_price($row['deptNum'],$row['arvNum'])/$row['count'] +500), "</TD>";
         echo "<TD>", bool_to_str($row['completed']), "</TD>";
         echo "<TD> 
                     <form method = 'post' action = 'complete.php'>
@@ -108,7 +132,7 @@
                     <TABLE border = '2' align = 'center'>
                         <TR height='20'>
                             <TH> Request Number </TH><TH>Date</TH><TH> Time </TH>
-                            <TH> Departure</TH><TH>Arrival</TH><TH>Current Count</TH><TH>Match Completed</TH>";   
+                            <TH> Departure</TH><TH>Arrival</TH><TH>Current Count</TH><th>Expected Price</th><TH>Match Completed</TH>";   
         echo "</TR>";
         while($row = mysqli_fetch_array($ret2)) {
             echo "<TR align='center'>";
@@ -118,6 +142,7 @@
             echo "<TD>", loc_to_str($row['deptNum']), "</TD>";
             echo "<TD>", loc_to_str($row['arvNum']), "</TD>";
             echo "<TD>", $row['count'], "</TD>";
+            echo "<TD>", (compute_price($row['deptNum'],$row['arvNum'])/$row['count'] +500), "</TD>";
             echo "<TD>", bool_to_str($row['completed']),"</TD>";
             echo "</TR>";	  
         }
@@ -146,7 +171,7 @@
             echo "<TD>", loc_to_str($row['arvNum']), "</TD>";
             echo "<TD>", $row['count'], "</TD>";
             echo "<TD>", $row['taxiNUM'],"</TD>";
-            echo "<TD>", $row['price'],"</TD>";
+            echo "<TD>", (int)($row['price']/$row['count']+500),"</TD>";
             echo "</TR>";	  
         }
         echo"</table>";
