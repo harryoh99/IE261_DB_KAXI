@@ -10,16 +10,18 @@ $conn  = mysqli_connect($servername, $username, $pw, $dbname) or die("MySql Conn
 $driverid = $_POST['ID'];
 $driverpw = $_POST['Password'];
 $drivername = $_POST['name'];
+$driverSex = $_POST['gender'];
 $driverPhone = $_POST['phonenumber'];
 $driverTaxi = $_POST['taxiNumber'];
+$driverCompany = $_POST['Company'];
 
-$sql = "insert into personTBL(userid, username, pw, phoneNum) values";
-$sql = $sql."('".$driverid."', '".$drivername."', '".$driverpw."',".$driverPhone.");";
+$sql = "insert into personTBL(userid, username, pw, sex, phoneNum) values";
+$sql = $sql."('".$driverid."', '".$drivername."', '".$driverpw."', '".$driverSex."'," .$driverPhone.");";
 
-$sql2 = "insert into driverTBL(userid, taxiNUM) values ('".$driverid."', '".$driverTaxi."');";
+$sql2 = "insert into driverTBL(userid, taxiCompanyNum, taxiNUM) values ('".$driverid."', ".$driverCompany.",'".$driverTaxi."');";
 
-$result1 = mysqli_query($conn, $sql);
-$result2 = mysqli_query($conn, $sql2);
+$result1 = mysqli_query($conn, $sql) or die("ERROR: " . $sql . "<br>" . $conn->error);
+$result2 = mysqli_query($conn, $sql2) or die("WRONG SECOND");
 if($result1&&$result2) {
 	
 	echo '<script type="text/javascript">alert("Successfully Registered"); history.back(-1)</script>';

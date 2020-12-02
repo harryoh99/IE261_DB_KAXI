@@ -20,7 +20,7 @@ $sql1 = $sql1."('".$userid."', '".$username."', '".$userpw."', '".$usersex."', "
 
 $sql2 = "insert into userTBL(userid, email) values ( '".$userid."', '".$usermail."');";
 
-$result1 = mysqli_query($conn, $sql1);
+$result1 = mysqli_query($conn, $sql1) or die("ERROR: " . $sql . "<br>" . $conn->error);
 $result2 = mysqli_query($conn, $sql2);
 if($result1&&$result2) {
 	
@@ -28,8 +28,8 @@ if($result1&&$result2) {
  
 }
 else{
-	// echo "ERROR: " . $sql . "<br>" . $conn->error;
-	echo '<script type="text/javascript">alert("Registration Fail"); history.back(-1)</script>';	   
+	echo "ERROR: " . $sql . "<br>" . $conn->error;
+	//echo '<script type="text/javascript">alert("Registration Fail"); history.back(-1)</script>';	   
 }
 
 
