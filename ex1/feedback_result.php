@@ -19,9 +19,9 @@
 					$result=mysqli_query($conn,$sql);
 					
 					if($result){
-								echo '<script type="text/javascript">alert("Successfully saved"); location.replace("Feedback_list.php");</script>';}
+								echo '<script type="text/javascript">alert("Successfully Registered"); location.replace("Feedback_list.php");</script>';}
 					else{
-								echo '<script type="text/javascript">alert("saving fail"); location.replace("feedback.php");</script>';}
+								echo '<script type="text/javascript">alert("Register fail"); location.replace("feedback.php");</script>';}
 	}
 	else{
 		echo '<script type="text/javascript">alert("fill the content!!"); location.replace("feedback.php");</script>';}
