@@ -1,5 +1,5 @@
 <?php
-
+    session_start();
     function loc_to_str(int $a) {
         switch ($a) {
             case 1:
@@ -43,7 +43,7 @@
 	$username = 'root';
 	$pw = '1234';
     $db = 'kaxi';
-    $id='0';
+    $id=$_SESSION['ID'];
     
     $type = $_POST['type'];
     if($type =='ToKaist'){

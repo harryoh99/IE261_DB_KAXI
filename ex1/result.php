@@ -46,6 +46,9 @@
 	</style>
 	
 	</head>
+<?php
+	session_start();
+?>
 	<body>
 		<br><br><br>
 		<form method = "post" action = 'result1.php'>
@@ -54,10 +57,10 @@
 					<td> <B>Rechecking your ID...</B> </td>
 				</tr>
 				<tr align='center' height='50'>
-					<td> <input type="text" name="ID" size="10" maxlength="20"placeholder="ID.."></input><br> </td>
+					<td> <input type="text" name="ID" size="10" maxlength="20" value = <?php echo $_SESSION['ID']?> placeholder="ID.."></input><br> </td>
 				</tr>
 				<tr align='center' height='40'>
-					<td> <input type="submit" value="Check"></input> </td>
+					<td> <input type="submit" value="See Result"></input> </td>
 				</tr>
 			</table>
 		</form>
