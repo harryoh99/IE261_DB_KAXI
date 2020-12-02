@@ -38,6 +38,7 @@
         if($count>0){
             $row = mysqli_fetch_array($ret2);
             $taxiNum = $row['taxiNUM'];
+            $companyNum = $row['taxiCompanyNum'];
         }
     }
     else{
@@ -152,6 +153,23 @@
             <tr align='center' height='50'>
                <td> <B>Taxi Number</B> </td>
                <td> <input type="text" name="taxiNum" size="10" value = <?php echo $taxiNum?> placeholder="taxiNumber.."></input><br> </td>
+            </tr>
+            <tr align='left' height='50'>
+               <td align = 'center'> <B> Company </B> </td>
+               <?php
+                  if($companyNum==1){
+                     echo "<td>&nbsp;&nbsp;<select name = 'Company'> <option value= 1 selected>광덕운수</option><option value= 2>오성</option>
+                     <option value= 3>진양운수</option></select> </td>";
+                  }
+                  else if($companyNum==2){
+                     echo "<td>&nbsp;&nbsp;<select name = 'Company'> <option value= 1>광덕운수</option><option value= 2  selected>오성</option>
+                     <option value= 3>진양운수</option></select> </td>";
+                  }
+                  else if($companyNum==3){
+                     echo "<td>&nbsp;&nbsp;<select name = 'Company'> <option value= 1>광덕운수</option><option value= 2>오성</option>
+                     <option value= 3  selected>진양운수</option></select> </td>";
+                  }
+               ?>
             </tr>
             <tr align='center' height='40'>
                <td colspan='2'> <input type="submit" value="modify"></input> </td>

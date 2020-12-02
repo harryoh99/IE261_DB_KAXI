@@ -189,7 +189,7 @@
                     <TABLE align = 'center'>
                         <TR height='20'>
                             <TH> Request Number </TH><TH>Date</TH><TH> Time </TH>
-                            <TH> Departure</TH><TH>Arrival</TH><TH>Current Count</TH><TH>Taxi Number</TH><TH>Estimated Price</TH>";   
+                            <TH> Departure</TH><TH>Arrival</TH><TH>Current Count</TH><TH>Taxi Number</TH><TH>Estimated Price</TH><TH>Passenger Numbers</TH>";   
         echo "</TR>";
         while($row = mysqli_fetch_array($ret3)) {
             echo "<TR align='center'>";
@@ -201,6 +201,13 @@
             echo "<TD>", $row['count'], "</TD>";
             echo "<TD>", $row['taxiNUM'],"</TD>";
             echo "<TD>", (int)($row['price']/$row['count']+500),"</TD>";
+            echo "<TD> 
+                    <form method = 'post' action = 'phoneNum.php'>
+                            <input type='hidden' name = 'id' value = '".$id."'>
+                            <input type='hidden' name = 'reqNum' value = '".$row['reqNum']."'>
+                            <input type='submit' value='Search'>
+                        </form>
+                </TD>";
             echo "</TR>";	  
         }
         echo"</table>";

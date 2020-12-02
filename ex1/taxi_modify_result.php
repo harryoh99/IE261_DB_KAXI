@@ -11,9 +11,10 @@
     $sex = $_POST['gender'];
     $phoneNum = $_POST['phonenumber'];
     $taxiNum = $_POST['taxiNum'];
+    $companyNum = $_POST['Company'];
 
     $sql = "update personTBL set username = '".$name."', sex = '".$sex."', phoneNum = '".$phoneNum."' where userid = '".$id."';";
-    $sql2 = "update driverTBL set taxiNUM = '".$taxiNum."' where userid = '".$id."';";
+    $sql2 = "update driverTBL set taxiNUM = '".$taxiNum."', taxiCompanyNum = ".$companyNum." where userid = '".$id."';";
 
     $res = mysqli_query($conn,$sql);
     $res2 = mysqli_query($conn,$sql2);
