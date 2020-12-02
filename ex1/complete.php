@@ -11,8 +11,10 @@
     $sql3 = "select ishost from customerTBL where (reqNum = ".$reqNum." and userid = '".$id."');";
     $conn = mysqli_connect($servername, $username, $pw, $db);
     $ret0 = mysqli_query($conn, $sql3) or die("sql: ".$sql3."<br><br>".$conn->error);
-    $count = mysqli_num_rows($ret0);
-    if($count==1){
+    $row =  mysqli_fetch_array($ret0);
+    if($row['ishost']==0)
+        echo '<script type="text/javascript">alert("You are not the host! Ask the host!"); location.replace("search.php");</script>';
+    else{
         $ret = mysqli_query($conn, $sql) or die("FIRST FAILED");
         $ret2 = mysqli_query($conn, $sql2) or die("SECOND FAILED");
 
@@ -22,11 +24,9 @@
         else{
             echo '<script type="text/javascript">alert("Failed!!"); location.replace("result.php"); </script>';
         }
-    } 
-    else{
-        '<script type="text/javascript">alert("You are not the host! Host can only choose completion"); location.replace("result.php"); </script>';
     }
 
+   
 
     
 

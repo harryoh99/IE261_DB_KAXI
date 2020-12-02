@@ -102,7 +102,7 @@ create table feedbackTBL(
     rating int null,
     feedback varchar(100) null,
     primary key(feedbackNum),
-    foreign key (userid) references personTBL(userid)
+    foreign key (userid) references userTBL(userid)
     );
 
 alter table requesttbl
@@ -189,9 +189,15 @@ END $$
 DELIMITER ;
 
 
+create table feedbackTaxiTBL(
+	feedbackNum int not null auto_increment,
+    userid varchar(20) not null,
+    rating int null,
+    feedback varchar(100) null,
+    primary key(feedbackNum),
+    foreign key (userid) references driverTBL(userid)
+);
 
-
-insert into matchTBL(matchCandNum,taxiID,price) values(2,'0',100);
 
 
     
