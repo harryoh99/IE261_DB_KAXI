@@ -70,7 +70,7 @@
     $conn = mysqli_connect($servername, $username, $pw, $db);
     $sql  = "select year, month, day, hour, minute, deptNum, arvNum from requestTBL where reqNum  = ".$reqNum.";";
     $sql2 = "select personTBL.userid, phoneNum from customerTBL,personTBL 
-            where (customerTBL.userid = personTBL.userid and customerTBL.userid = '".$id."' and reqNum  = ".$reqNum.");";
+            where (customerTBL.userid = personTBL.userid and reqNum  = ".$reqNum.");";
 
     $ret = mysqli_query($conn,$sql) or die("ERROR: " . $sql . "<br>" . $conn->error);
     if($ret){
@@ -89,15 +89,15 @@
                 $arvNum = $row['arvNum'];
             }
         }
-        $ret2 = mysqli_query($conn,$sql2) or die("ERROR: " . $sql . "<br>" . $conn->error);
-        $count2 = mysqli_num_rows($ret);
+        $ret2 = mysqli_query($conn,$sql2) or die("ERROR: " . $sql2 . "<br>" . $conn->error);
+        $count2 = mysqli_num_rows($ret2);
 
         echo "
             <H3>Ride on ".$year." - ".$month." - ".$day." " .$hour."시 ".$minute."분  <br>
             Departure: ".loc_to_str($deptNum)."<br> Destination: ".loc_to_str($arvNum)."<br></H3>
         ";
 
-        if($count<=0)
+        if($count2<=0)
             echo '<script type="text/javascript">alert("WRONG!"); location.replace("result.php"); </script>';
         
         else{

@@ -54,18 +54,49 @@
         else   
             return "COMPLETED";
     }
-    echo "<HEAD>";
+    echo "<HEAD>
+            <style>
+            table {
+                border-top: 1px solid #ccc;
+                border-left: 3px solid #369;
+                border-right: 3px solid #369;
+            }
+            th, td {
+                border-bottom: 1px solid #444444;
+                border-right: 1px solid;
+                padding: 5px;
+            }
+            button {
+            width:80px;
+            background-color: #E6E6E6;
+            border: none;
+            border-radius:8px;
+            color: black;
+            padding: 12px 0;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 3.5px;
+            cursor: pointer;
+            }
+            </style>
+            <TITLE>
+                PhoneNumber
+            </TITLE>
+            <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+            <TITLE> Passenger Phone Number </TITLE>
+            </HEAD>";
     echo "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />"; 
-    echo "<TITLE> Taxi Search Result </TITLE>";
     echo "</HEAD>";
     echo "<H2> &nbsp; Pending Matching Candidates </H2>";
-    echo "<TABLE border = '2' align = 'center'>";
+    echo "<TABLE align = 'center'>";
     echo "<TR height='20'>";
-	echo "<TH>#</TH><TH> Departure </TH><TH> Destination </TH><TH> Time </TH><TH> Expected Price </TH><th>Accept</th>";   
-	echo "</TR>";
-	$servername = 'localhost';
-	$username = 'root';
-	$pw = '1234';
+   echo "<TH>#</TH><TH> Departure </TH><TH> Destination </TH><TH> Time </TH><TH> Expected Price </TH><th>Accept</th>";   
+   echo "</TR>";
+   $servername = 'localhost';
+   $username = 'root';
+   $pw = '1234';
     $db = 'kaxi';
     $id=$_SESSION['ID'];
     
@@ -122,16 +153,15 @@
             <input type='submit' value='Accept'>
         </form>
         </TD>";
-        echo "</TR>";	  
+        echo "</TR>";     
     }
     mysqli_close($conn);
 
-	
+   
 
-	echo "</TABLE>";
-	
-	echo "<br>&nbsp;<button type=".'"button" onclick='.'"location.href='."'taxi_search.php'".' "'.">back</button></br>";
-	echo "</html>";
+   echo "</TABLE>";
+   
+   echo "<br>&nbsp;<button type=".'"button" onclick='.'"location.href='."'taxi_search.php'".' "'.">back</button></br>";
+   echo "</html>";
 
 ?>
-
