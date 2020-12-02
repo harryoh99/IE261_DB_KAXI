@@ -89,12 +89,8 @@
             <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
             <TITLE> Taxi Search Result </TITLE>
             </HEAD>
-            <H3> &nbsp; Pending Requests </H3>
-            <TABLE align = 'center'>
-                <TR height='20'>
-                    <TH> Request Number </TH><TH>Date</TH><TH> Time </TH>
-                    <TH> Departure</TH><TH>Arrival</TH><TH>Current Count </TH><th>Expected Price</th><TH>Completed</TH><th>Finish</th>";   
-    echo "</TR>";
+            ";   
+    
 
 
 
@@ -120,39 +116,51 @@
     
     $ret = mysqli_query($conn,$sql) or die("sql: ".$sql."<br><br>".$conn->error);
     $count = mysqli_num_rows($ret);
-    if($count!=0){
-        echo '<script type="text/javascript">alert("'.$count.' records are searched..."); </script>';
+	$ret2 = mysqli_query($conn,$sql2) or die("sql: ".$sql2."<br><br>".$conn->error);
+    $count2 = mysqli_num_rows($ret2);
+	$ret3 = mysqli_query($conn,$sql3) or die("sql: ".$sql3."<br><br>".$conn->error);
+    $count3 = mysqli_num_rows($ret3);
+	$sumcount=$count+$count2+$count3;
+    if($sumcount!=0){
+        echo '<script type="text/javascript">alert("'.$sumcount.' records are searched..."); </script>';
     }
     else {
         #echo " sql: ".$sql."<br><br>";
         echo '<script type="text/javascript">alert("no data!!"); location.replace("search.php"); </script>';
              
     }
-    while($row = mysqli_fetch_array($ret)) {
-        echo "<TR align='center'>";
-        echo "<TD>", $row['reqNum'], "</TD>";
-        echo "<TD>", $row['year'].'-'.$row['month'].'-'.$row['day'], "</TD>";
-        echo "<TD>", $row['hour'].'시 '.$row['minute'].'분', "</TD>";
-        echo "<TD>", loc_to_str($row['deptNum']), "</TD>";
-        echo "<TD>", loc_to_str($row['arvNum']), "</TD>";
-        echo "<TD>", $row['count'], "</TD>";
-        echo "<TD>", (compute_price($row['deptNum'],$row['arvNum'])/$row['count'] +500), "</TD>";
-        echo "<TD>", bool_to_str($row['completed']), "</TD>";
-        echo "<TD> 
+	if($count!=0){
+		echo"
+		<H3> &nbsp; Pending Requests </H3>
+            <TABLE align = 'center'>
+                <TR height='20'>
+                    <TH> Request Number </TH><TH>Date</TH><TH> Time </TH>
+                    <TH> Departure</TH><TH>Arrival</TH><TH>Current Count </TH><th>Expected Price</th><TH>Completed</TH><th>Finish</th>";
+					echo "</TR>";
+		while($row = mysqli_fetch_array($ret)) {
+			echo "<TR align='center'>";
+			echo "<TD>", $row['reqNum'], "</TD>";
+			echo "<TD>", $row['year'].'-'.$row['month'].'-'.$row['day'], "</TD>";
+			echo "<TD>", $row['hour'].'시 '.$row['minute'].'분', "</TD>";
+			echo "<TD>", loc_to_str($row['deptNum']), "</TD>";
+			echo "<TD>", loc_to_str($row['arvNum']), "</TD>";
+			echo "<TD>", $row['count'], "</TD>";
+			echo "<TD>", (compute_price($row['deptNum'],$row['arvNum'])/$row['count'] +500), "</TD>";
+			echo "<TD>", bool_to_str($row['completed']), "</TD>";
+			echo "<TD> 
                     <form method = 'post' action = 'complete.php'>
                             <input type='hidden' name = 'id' value = '".$id."'>
                             <input type='hidden' name = 'reqNum' value = '".$row['reqNum']."'>
                             <input type='submit' value='Complete'>
                         </form>
             </TD>";
-        echo "</TR>";	  
+			echo "</TR>";	  
     }
-    echo"</table>";
-
+		echo"</table>";
+	}
 
     
-    $ret2 = mysqli_query($conn,$sql2) or die("sql: ".$sql2."<br><br>".$conn->error);
-    $count2 = mysqli_num_rows($ret2);
+    
     if($count2!=0){
         #echo '<script type="text/javascript">alert("'.$count2.' records are searched..."); </script>';
 
@@ -179,8 +187,7 @@
     }
 
 
-    $ret3 = mysqli_query($conn,$sql3) or die("sql: ".$sql3."<br><br>".$conn->error);
-    $count3 = mysqli_num_rows($ret3);
+    
     if($count3!=0){
         #echo '<script type="text/javascript">alert("'.$count2.' records are searched..."); </script>';
 
