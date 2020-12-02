@@ -53,16 +53,16 @@
     $id = $_POST['ID'];
     $conn = mysqli_connect($servername, $username, $pw, $db);
     $sql = "select requestTBL.reqNum, year, month,day, hour, minute, deptNum, arvNum, count, requestTBL.completed from requestTBL,customerTBL
-            where(requestTBL.reqNum = customerTBL.reqNum and userid='".$id."');";
+            where(requestTBL.completed =0 and requestTBL.reqNum = customerTBL.reqNum and userid='".$id."');";
     $sql2 = "select matchCandTBL.reqNum, requestTBL.year, requestTBL.month, requestTBL.day, requestTBL.hour, requestTBL.minute, deptNum, arvNum, count, matchCandTBL.completed 
              from requesttbl, matchcandtbl, customertbl 
              where (matchCandTBL.reqNum = requestTBL.reqNum and requestTBL.reqNum = customerTBL.reqNum 
-             and requestTBL.completed = 1  and userid = '".$id."');";
+             and requestTBL.completed = 1 and matchCandTBL.completed = 0 and userid = '".$id."');";
     
     $sql3 = "select matchCandTBL.reqNum, requestTBL.year, requestTBL.month, requestTBL.day, requestTBL.hour, requestTBL.minute, deptNum, arvNum, count, driverTBL.taxiNUM, price
     from requesttbl, matchcandtbl, customertbl, matchTBL, driverTBL
-    where ( matchTBL.matchCandNum = matchCandTBL.matchCandNum and requestTBL.reqNum = customerTBL.reqNum and driverTBL.userid=matchTBL.taxiID and 
-            matchCandTBL.completed = 1 and requestTBL.completed=1 and customerTBL.userid = '".$id."');";
+    where ( matchTBL.matchCandNum = matchCandTBL.matchCandNum and matchCandTBL.completed = 1 and matchCandTBL.reqNum = requestTBL.reqNum and requestTBL.reqNum = customerTBL.reqNum and driverTBL.userid=matchTBL.taxiID and 
+             requestTBL.completed = 1 and customerTBL.userid = '".$id."');";
 
     
     
@@ -85,6 +85,13 @@
         echo "<TD>", loc_to_str($row['arvNum']), "</TD>";
         echo "<TD>", $row['count'], "</TD>";
         echo "<TD>", bool_to_str($row['completed']), "</TD>";
+        echo "<TD> 
+                    <form method = 'post' action = 'complete.php'>
+                            <input type='hidden' name = 'id' value = '".$id."'>
+                            <input type='hidden' name = 'reqNum' value = '".$row['reqNum']."'>
+                            <input type='submit' value='Complete'>
+                        </form>
+            </TD>";
         echo "</TR>";	  
     }
     echo"</table>";
@@ -116,10 +123,6 @@
         }
         echo"</table>";
     }
-    
-    else{
-        echo "TRLLL";
-    }
 
 
     $ret3 = mysqli_query($conn,$sql3) or die("sql: ".$sql3."<br><br>".$conn->error);
@@ -149,9 +152,6 @@
         echo"</table>";
     }
     
-    else{
-        echo "TRLLL";
-    }
 
 
 
