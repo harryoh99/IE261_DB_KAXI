@@ -15,14 +15,6 @@ create table userTBL(
     primary key(userid),
     foreign key(userid) references personTBL(userid)
 );
-create table customerTBL(
-	userid varchar(20) not null,
-    reqNum int not null,
-    ishost int default 0,
-    foreign key (userid) references userTBL(userid),
-    foreign key (reqNum) references requestTBL(reqNum),
-    primary key(userid, reqNum)
-);
 
 create table taxiCompanyTBL(
 	taxiCompanyNum int unsigned not null,
@@ -69,6 +61,14 @@ create table requestTBL(
     primary key (reqNum)
 );
 
+create table customerTBL(
+	userid varchar(20) not null,
+    reqNum int not null,
+    ishost int default 0,
+    foreign key (userid) references userTBL(userid),
+    foreign key (reqNum) references requestTBL(reqNum),
+    primary key(userid, reqNum)
+);
 
 create table matchCandTBL(
 	matchCandNum int not null auto_increment,
